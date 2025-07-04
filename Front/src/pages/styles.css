@@ -1,0 +1,244 @@
+/* Reset default styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(to right, #6dd5ed, #2193b0);
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Form Container */
+.form-container {
+  background-color: white;
+  padding: 40px;
+  border-radius: 15px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  width: 350px;
+  text-align: center;
+  animation: fadeIn 1s ease-in-out;
+}
+
+.form-container h2,h1 {
+  margin-bottom: 20px;
+  color: #196d82;
+}
+
+.form-container input {
+  width: 100%;
+  padding: 12px;
+  margin: 10px 0;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  transition: 0.3s;
+}
+
+.form-container input:focus {
+  border-color: #2193b0;
+  outline: none;
+  box-shadow: 0 0 5px rgba(33, 147, 176, 0.6);
+}
+
+.form-container button {
+  width: 100%;
+  padding: 12px;
+  background-color: #2193b0;
+  color: white;
+  font-weight: bold;
+  border: none;
+  border-radius: 10px;
+  margin-top: 15px;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.form-container button:hover {
+  background-color: #1a7f99;
+  transform: scale(1.03);
+}
+
+.form-container p {
+  margin-top: 15px;
+  color: #666;
+  cursor: pointer;
+  text-decoration: underline;
+  transition: 0.3s;
+  cursor: pointer;
+}
+
+.form-container p:hover {
+  color: #2193b0;
+}
+
+/* Todo App */
+.todo-wrapper {
+  display: flex;
+  width: 90vw;
+  max-width: 1000px;
+  height: 80vh;
+  background: white;
+  border-radius: 15px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  overflow: hidden;
+  animation: slideUp 0.8s ease-out;
+}
+
+.sidebar {
+  width: 250px;
+  background: #2193b0;
+  color: white;
+  padding: 30px 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border-top-left-radius: 15px;
+  border-bottom-left-radius: 15px;
+}
+
+.sidebar h3 {
+  font-size: 22px;
+}
+
+.sidebar button {
+  padding: 10px;
+  background-color: white;
+  color: #2193b0;
+  border: none;
+  border-radius: 10px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.sidebar button:hover {
+  background-color: #f0f0f0;
+  transform: scale(1.05);
+}
+
+.todo-main {
+  flex: 1;
+  padding: 30px;
+  overflow-y: auto;
+}
+
+.todo-main h2 {
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.todo-main form {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.todo-main form input {
+  flex: 1;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+}
+
+.todo-main form button {
+  padding: 10px 20px;
+  background-color: #2193b0;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.todo-main form button:hover {
+  background-color: #1a7f99;
+}
+
+.todo-list {
+  list-style: none;
+}
+
+.todo-list li {
+  background: #f9f9f9;
+  border-left: 5px solid #2193b0;
+  margin-bottom: 10px;
+  padding: 10px 15px;
+  border-radius: 8px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  animation: fadeInUp 0.5s ease;
+}
+
+.todo-list li span {
+  font-size: 16px;
+  color: #333;
+}
+
+.todo-list li small {
+  font-size: 12px;
+  color: #777;
+  margin-left: 10px;
+}
+
+.todo-list li button {
+  background: transparent;
+  border: none;
+  font-size: 18px;
+  cursor: pointer;
+  color: #c0392b;
+  transition: 0.3s;
+}
+
+.todo-list li button:hover {
+  transform: scale(1.2);
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(100px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    transform: translateY(15px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0px);
+    opacity: 1;
+  }
+}
+
+/* Scrollbar Styling */
+.todo-main::-webkit-scrollbar {
+  width: 6px;
+}
+
+.todo-main::-webkit-scrollbar-thumb {
+  background-color: #ccc;
+  border-radius: 10px;
+}
