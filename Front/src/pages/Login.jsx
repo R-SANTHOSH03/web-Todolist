@@ -1,3 +1,4 @@
+// Login.jsx
 import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
@@ -18,13 +19,12 @@ function Login() {
       localStorage.setItem("username", res.data.user.username);
       navigate("/todo");
     } catch (err) {
-      alert("Login failed");
+      alert(err.response?.data?.error || "Login failed");
     }
   };
 
   return (
-    
-    <div className="form-container"> 
+    <div className="form-container">
       <h1>TODO LIST</h1>
       <h2>Login</h2>
       <form onSubmit={handleSubmit}>

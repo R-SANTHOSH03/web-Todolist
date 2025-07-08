@@ -1,4 +1,4 @@
-/* Reset default styles */
+/* Reset */
 * {
   margin: 0;
   padding: 0;
@@ -6,15 +6,15 @@
 }
 
 body {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background: linear-gradient(to right, #6dd5ed, #2193b0);
+  font-family: 'Segoe UI', sans-serif;
+  background: linear-gradient(to right, #74ebd5, #acb6e5);
   min-height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-/* Form Container */
+/* Login/Signup Form */
 .form-container {
   background-color: white;
   padding: 40px;
@@ -25,7 +25,7 @@ body {
   animation: fadeIn 1s ease-in-out;
 }
 
-.form-container h2,h1 {
+.form-container h2, .form-container h1 {
   margin-bottom: 20px;
   color: #196d82;
 }
@@ -41,8 +41,8 @@ body {
 
 .form-container input:focus {
   border-color: #2193b0;
+  box-shadow: 0 0 5px rgba(33, 147, 176, 0.5);
   outline: none;
-  box-shadow: 0 0 5px rgba(33, 147, 176, 0.6);
 }
 
 .form-container button {
@@ -65,10 +65,8 @@ body {
 
 .form-container p {
   margin-top: 15px;
-  color: #666;
-  cursor: pointer;
+  color: #555;
   text-decoration: underline;
-  transition: 0.3s;
   cursor: pointer;
 }
 
@@ -76,12 +74,12 @@ body {
   color: #2193b0;
 }
 
-/* Todo App */
+/* Todo App Layout */
 .todo-wrapper {
   display: flex;
   width: 90vw;
   max-width: 1000px;
-  height: 80vh;
+  height: 85vh;
   background: white;
   border-radius: 15px;
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
@@ -97,8 +95,6 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  border-top-left-radius: 15px;
-  border-bottom-left-radius: 15px;
 }
 
 .sidebar h3 {
@@ -134,15 +130,16 @@ body {
 
 .todo-main form {
   display: flex;
+  flex-wrap: wrap;
   gap: 10px;
   margin-bottom: 20px;
 }
 
 .todo-main form input {
-  flex: 1;
   padding: 10px;
   border-radius: 8px;
   border: 1px solid #ccc;
+  flex: 1;
 }
 
 .todo-main form button {
@@ -161,6 +158,7 @@ body {
 
 .todo-list {
   list-style: none;
+  padding: 0;
 }
 
 .todo-list li {
@@ -237,7 +235,6 @@ body {
 .todo-main::-webkit-scrollbar {
   width: 6px;
 }
-
 .todo-main::-webkit-scrollbar-thumb {
   background-color: #ccc;
   border-radius: 10px;

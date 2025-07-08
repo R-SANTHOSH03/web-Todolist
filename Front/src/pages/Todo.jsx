@@ -6,10 +6,12 @@ import { useNavigate } from "react-router-dom";
 function Todo() {
   const [todos, setTodos] = useState([]);
   const [text, setText] = useState("");
+  const [reminderTime, setReminderTime] = useState("");
   const username = localStorage.getItem("username");
   const token = localStorage.getItem("token");
   const navigate = useNavigate();
 
+  // Redirect to login if token is missing
   useEffect(() => {
     if (!token) {
       navigate("/");
@@ -17,34 +19,51 @@ function Todo() {
     }
 
     const fetchTodos = async () => {
-      const res = await axios.get("http://localhost:5000/api/todos", {
-        headers: { Authorization: `Bearer ${token}` },
-      });
-      setTodos(res.data);
+      try {
+        const res = await axios.get("http://localhost:5000/api/todos", {
+          headers: { Authorization: `Bearer ${token}` },
+        });
+        setTodos(res.data);
+      } catch (error) {
+        console.error("Failed to fetch todos:", error);
+      }
     };
+
     fetchTodos();
   }, [token, navigate]);
 
+  // Add new todo with optional reminderTime
   const addTodo = async (e) => {
     e.preventDefault();
     if (!text.trim()) return;
 
-    const res = await axios.post(
-      "http://localhost:5000/api/todos",
-      { text },
-      { headers: { Authorization: `Bearer ${token}` } }
-    );
-    setTodos([res.data, ...todos]);
-    setText("");
+    try {
+      const res = await axios.post(
+        "http://localhost:5000/api/todos",
+        { text, reminderTime },
+        { headers: { Authorization: `Bearer ${token}` } }
+      );
+      setTodos([res.data, ...todos]);
+      setText("");
+      setReminderTime("");
+    } catch (error) {
+      console.error("Error adding todo:", error);
+    }
   };
 
+  // Delete a todo
   const deleteTodo = async (id) => {
-    await axios.delete(`http://localhost:5000/api/todos/${id}`, {
-      headers: { Authorization: `Bearer ${token}` },
-    });
-    setTodos(todos.filter((todo) => todo._id !== id));
+    try {
+      await axios.delete(`http://localhost:5000/api/todos/${id}`, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      setTodos(todos.filter((todo) => todo._id !== id));
+    } catch (error) {
+      console.error("Error deleting todo:", error);
+    }
   };
 
+  // Logout and clear localStorage
   const logout = () => {
     localStorage.clear();
     navigate("/");
@@ -66,6 +85,11 @@ function Todo() {
             placeholder="Add a task..."
             onChange={(e) => setText(e.target.value)}
           />
+          <input
+            type="datetime-local"
+            value={reminderTime}
+            onChange={(e) => setReminderTime(e.target.value)}
+          />
           <button type="submit">Add</button>
         </form>
 
@@ -73,7 +97,11 @@ function Todo() {
           {todos.map((todo) => (
             <li key={todo._id}>
               <span>{todo.text}</span>
-              <small>{new Date(todo.createdAt).toLocaleString()}</small>
+              <small>
+                {todo.reminderTime
+                  ? `⏰ ${new Date(todo.reminderTime).toLocaleString()}`
+                  : `🕒 ${new Date(todo.createdAt).toLocaleString()}`}
+              </small>
               <button onClick={() => deleteTodo(todo._id)}>❌</button>
             </li>
           ))}
