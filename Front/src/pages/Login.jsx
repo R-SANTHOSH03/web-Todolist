@@ -14,7 +14,7 @@ function Login() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post("http://localhost:5000/api/auth/login", form);
+      const res = await axios.post("https://todolist-website-05ku.onrender.com", form);
       localStorage.setItem("token", res.data.token);
       localStorage.setItem("username", res.data.user.username);
       navigate("/todo");
