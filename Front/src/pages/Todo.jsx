@@ -20,7 +20,7 @@ function Todo() {
 
     const fetchTodos = async () => {
       try {
-        const res = await axios.get("http://localhost:5000/api/todos", {
+        const res = await axios.get("https://todolist-website-05ku.onrender.com", {
           headers: { Authorization: `Bearer ${token}` },
         });
         setTodos(res.data);
